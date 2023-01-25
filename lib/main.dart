@@ -95,10 +95,10 @@ class CurrentPage extends StatelessWidget {
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children:  [
-                  const Text('You\'re', style: TextStyle(color: Colors.white, fontSize: 16),),
-                  const Text('#132,082', style: TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.w800),),
-                  const Text('of #225,809 on the waitlist', style: TextStyle(color: Colors.white, fontSize: 16),),
+                children:  const [
+                  Text('You\'re', style: TextStyle(color: Colors.white, fontSize: 16),),
+                  Text('#132,082', style: TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.w800),),
+                  Text('of #225,809 on the waitlist', style: TextStyle(color: Colors.white, fontSize: 16),),
                   // const Spacer(),
 
                 ],
@@ -109,7 +109,9 @@ class CurrentPage extends StatelessWidget {
               top: 100,
               // right: 20,
               // left: 20,
-              child:  Image.asset('assets/images/card.png', scale: 2.5),),
+              child:  ClipRRect(
+                  borderRadius: BorderRadius.circular(6.0),
+                  child: Image.asset('assets/images/card.png', scale: 2.5)),),
 
           ],
         ),
@@ -172,21 +174,21 @@ class CurrentPage extends StatelessWidget {
                 secondText: 'Skip 42,267 places on the waitlist',
                 color: Colors.grey.withOpacity(0.3), ),
 
-              // CustomButtonSecond(
-              //   icon: Icons.lock,
-              //   width:size.width*0.85,
-              //   height: 20,
-              //   text: 'Invite 7 friend',
-              //   secondText: 'Skip 50,719 places on the waitlist',
-              //   color: Colors.grey.withOpacity(0.3), ),
+              CustomButtonSecond(
+                icon: Icons.lock,
+                width:size.width*0.85,
+                height: size.height*0.095,
+                text: 'Invite 7 friend',
+                secondText: 'Skip 50,719 places on the waitlist',
+                color: Colors.grey.withOpacity(0.3), ),
 
-              // CustomButtonSecond(
-              //   icon: Icons.lock,
-              //   width:size.width*0.85,
-              //   height: size.height*0.095,
-              //   text: 'Invite 10 friend',
-              //   secondText: 'Get a sleek Founder\'s Club debit Card 😎',
-              //   color: Colors.grey.withOpacity(0.3), ),
+              CustomLastButton(
+                icon: Icons.lock,
+                width:size.width*0.85,
+                height: size.height*0.2,
+                text: 'Invite 10 friend',
+                secondText: 'Get a sleek Founder\'s Club debit Card 😎',
+                color: Colors.grey.withOpacity(0.3), ),
             ],
           ),
         ),
@@ -307,5 +309,61 @@ class CustomButtonSecond extends StatelessWidget {
     );
   }
 }
+
+class CustomLastButton extends StatelessWidget {
+  final double height;
+  final double width;
+  final String text;
+  final String secondText;
+  final Color color;
+  final IconData? icon;
+  const CustomLastButton({Key? key, required this.height, required this.width, required this.text, required this.secondText, required this.color, this.icon}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(top: 5,bottom: 5),
+      // padding: const EdgeInsets.only(left: 30, right: 15),
+      margin: const EdgeInsets.only(bottom: 10),
+      height: height,
+      width: width,
+      decoration:  BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(icon,size: 18,color: Colors.black87,),
+                  Text(text, style: const TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w800),),
+
+                ],
+              ),
+              SizedBox(
+                  width: 150,
+                  child: Text(secondText, maxLines: 2, style: const TextStyle(color: Colors.grey,fontSize: 14),)),
+
+              const SizedBox(height: 15,),
+              const Text('Learn More', style: TextStyle(color: Color.fromRGBO(224, 91, 91, 1.0), fontSize: 16, fontWeight: FontWeight.w700),)
+            ],
+          ),
+          ClipRRect(
+              borderRadius: BorderRadius.circular(6.0),
+              child: Image.asset('assets/images/sadapay.jpg', height: 105,))
+        ],
+      ),
+    );
+  }
+}
+
 
 
